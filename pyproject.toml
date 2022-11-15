@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "ploty-test"
+version = "0.1.0"
+description = ""
+authors = ["Valdinei Ferreira"]
+readme = "README.md"
+packages = [{include = "ploty_test"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+plotly = "^5.11.0"
+pandas = "^1.5.1"
+matplotlib = "^3.6.2"
+notebook = "^6.5.2"
+jupyter = "^1.0.0"
+pyqt6 = "^6.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
