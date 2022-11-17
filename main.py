@@ -5,9 +5,11 @@ from matplotlib import pyplot, animation
 import pandas
 
 dicts = [
-    dict(Task="A", Start=0, End=4, Time=4),
-    dict(Task="B", Start=4, End=8, Time=4),
-    dict(Task="C", Start=8, End=10, Time=2),
+    dict(Task="A", Start=0, End=4, Time=4, Overload=False),
+    dict(Task="B", Start=4, End=8, Time=4, Overload=False),
+    dict(Task="B", Start=8, End=9, Time=1, Overload=True),
+    dict(Task="C", Start=9, End=11, Time=2, Overload=False),
+    dict(Task="B", Start=11, End=14, Time=3, Overload=False),
 ]
 time = 0
 
@@ -36,10 +38,14 @@ def get_index(i, start, end):
 
 def animate(i):
     global time
+    default_color = 'blue'
+    colors = []
     params = []
     left = list(map(lambda x: x.get('Start'), dicts))
 
     for dic in dicts:
+        colors.append('red') if dic.get('Overload') is True else colors.append(default_color)
+
         if time <= dic.get('Start'):
             params.append(0)
         elif time <= dic.get('End'):
@@ -49,7 +55,7 @@ def animate(i):
 
     time += 1
 
-    pyplot.barh([dic.get('Task') for dic in dicts], params, left=left, color="blue")
+    pyplot.barh([dic.get('Task') for dic in dicts], params, left=left, color=colors)
 
 
 def main():
